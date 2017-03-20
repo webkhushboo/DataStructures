@@ -1,7 +1,7 @@
 
 public class LinkedList {
 
-	Node head;
+	private static Node head;
 	public LinkedList(){
 		head= null;
     }
@@ -34,7 +34,7 @@ public class LinkedList {
 		current.next = null;
 		}
 	}
-	public void printNode(){
+	public void printNode(Node head){
 		Node current = head;
 		if(head == null){
 			System.out.println("Empty list");
@@ -60,25 +60,39 @@ public class LinkedList {
 		System.out.println(temp.getData());
 	}
 	
+	public static Node reverseLinkedList(){
+		Node current = head;
+		Node prev= null;
+		Node next = null;
+		while (current != null){
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		return prev;
+	}
 	public static void main(String[] args){
 		LinkedList list = new LinkedList();
 		list.addNode(10);
 		list.addNode(20);
 		list.addNode(30);
 		System.out.println("Before deleting element");
-		list.printNode();
+		list.printNode(head);
 		System.out.println("After deleting element");
 		list.deleteNode();
 		list.deleteNode();
 		list.deleteNode();
-		list.printNode();
+		list.printNode(head);
 		System.out.println("Adding elements");
-		list.addNode(190);
-		list.addNode(209);
-		list.addNode(308);
-		list.printNode();
+		list.addNode(1);
+		list.addNode(2);
+		list.addNode(3);
+		list.printNode(head);
 		System.out.println("Printing n'th element from last");
 		list.printNthNodeFromLast(2);
-		
+		System.out.println("Printing reversed linked list");
+		Node temp = reverseLinkedList();
+		list.printNode(temp);
 	}
 }
