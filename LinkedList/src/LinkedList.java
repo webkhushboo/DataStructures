@@ -1,7 +1,8 @@
 
 public class LinkedList {
 
-	private static Node head;
+	private  Node head;
+	Node left ;
 	public LinkedList(){
 		head= null;
     }
@@ -60,7 +61,7 @@ public class LinkedList {
 		System.out.println(temp.getData());
 	}
 	
-	public static Node reverseLinkedList(){
+	public static Node reverseLinkedList(Node head){
 		Node current = head;
 		Node prev= null;
 		Node next = null;
@@ -72,8 +73,85 @@ public class LinkedList {
 		}
 		return prev;
 	}
+	
+	public boolean detectLoopInLinkedList(Node root){
+		boolean loopExists = false;
+		Node fast_ptr = root, slow_ptr = root;
+		while(fast_ptr != null && slow_ptr !=null && fast_ptr.next !=null){
+			fast_ptr = fast_ptr.next.next;
+			slow_ptr = slow_ptr.next;
+			if(fast_ptr == slow_ptr){
+				loopExists =true;
+				break;
+			}
+			
+		}
+		return loopExists;
+		
+	}
+	
+	//check recursively if linked list is pallindrome or not 
+	// breakpoint is to traverse till the end of the list by checking if right.next == null
+	public boolean checkPallindrome(Node right){
+		boolean pallidromeExists = false;
+	    left = head ;
+		if(right == null)
+		 return true;
+		
+		boolean isPallindrome = checkPallindrome(right.next);
+		if(isPallindrome == false) 
+			return false;
+		
+		pallidromeExists = left.getData() == right.getData();
+		left= left.next;
+		
+		return pallidromeExists;
+	}
+	
+	// find the intersection of two linked list
+	public static Node getIntersection(Node head1, Node head2){
+		Node temp =null;
+		Node temp1 = head1;
+		Node temp2 = head2;
+		Node current1 = head1;
+		Node current2 = head2;
+		int count1 =0;
+		int count2=0;
+		while(temp1!=null){
+			count1++;
+			temp1= temp1.next;
+		}
+		while(temp2!=null){
+			count2++;
+			temp2 = temp2.next;
+		}
+		int diff =0;
+		if(count1 > count2){
+			diff = count1-count2;
+			for(int i =0 ;i < diff ; i++){
+				current1 = current1.next;
+			}
+		} else {
+			diff = count2-count1;
+			for(int i =0 ;i < diff ; i++){
+				current2 = current2.next;
+			}
+			}
+		
+	  while(current1 !=null || current2 != null){
+		    if(current1.getData() == current2.getData()){
+		    	temp= current1;
+		    	break;
+		    }
+		    current1 = current1.next;
+		    current2 = current2.next;
+	  }	
+	  return temp;
+	}
 	public static void main(String[] args){
 		LinkedList list = new LinkedList();
+		Node head = list.head;
+		LinkedList list2 = new LinkedList();
 		list.addNode(10);
 		list.addNode(20);
 		list.addNode(30);
@@ -88,11 +166,44 @@ public class LinkedList {
 		list.addNode(1);
 		list.addNode(2);
 		list.addNode(3);
+		list.addNode(4);
+		list.addNode(3);
+		list.addNode(2);
+		list.addNode(1);
+		//list.addNode(6);
 		list.printNode(head);
 		System.out.println("Printing n'th element from last");
 		list.printNthNodeFromLast(2);
 		System.out.println("Printing reversed linked list");
-		Node temp = reverseLinkedList();
-		list.printNode(temp);
+		Node temp = reverseLinkedList(list2.head);
+		list2.addNode(100);
+		list2.addNode(200);
+		list2.addNode(300);
+		list2.addNode(400);
+		System.out.println("Printing second linked list");
+		list2.printNode(list2.head);
+		list2.head.next.next.next = list2.head;
+		boolean loop = list.detectLoopInLinkedList(list2.head);
+		if(loop)
+		System.out.println("Loop exists");
+		else 
+		System.out.println("Loop doesn't exists");
+		System.out.println("Checking if list is pallindrome or not");
+		boolean isP= list.checkPallindrome(list.head);
+		if(isP)
+		System.out.println("Pallindrome exists");
+		else 
+		System.out.println("Pallindrome doesn't exists");
+		System.out.println("Printing Intersection of two linked list");
+		LinkedList list3 = new LinkedList();
+		LinkedList list4 = new LinkedList();
+		list3.addNode(10);
+		list3.addNode(20);
+		list4.addNode(20);
+		Node intersectionOfLinkedList = getIntersection(list3.head, list4.head);
+		if(intersectionOfLinkedList != null)
+		System.out.println("Intersection of two linked list is :" + intersectionOfLinkedList.getData());
+		else 
+		System.out.println("No Intersection exist");	
 	}
 }
