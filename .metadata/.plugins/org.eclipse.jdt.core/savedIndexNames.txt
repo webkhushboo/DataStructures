@@ -1,21 +1,4 @@
 INDEX VERSION 1.129+C:\Khush\Learning\DataStructuresPrograms\.metadata\.plugins\org.eclipse.jdt.core
-1674255975.index
-483240410.index
-2257946349.index
-2674665088.index
-4285944674.index
-102263159.index
-3501659757.index
+33092865.index
 3498066710.index
-3503675850.index
-3130810665.index
-255942676.index
-371122485.index
-3482526055.index
-852210138.index
-3168769098.index
-2042417946.index
-3578845120.index
-2484288276.index
 287178664.index
-3725742166.index

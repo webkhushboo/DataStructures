@@ -121,3 +121,9 @@ com.sun.jdi.IncompatibleThreadStateException: Thread was not suspended
 	at org.eclipse.debug.internal.core.commands.StepCommand.isExecutable(StepCommand.java:46)
 	at org.eclipse.debug.core.commands.AbstractDebugCommand$UpdateJob.run(AbstractDebugCommand.java:101)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jface.text 2 0 2017-03-23 16:08:26.007
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-03-23 16:08:26.024
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'

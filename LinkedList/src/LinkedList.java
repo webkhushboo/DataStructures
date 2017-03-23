@@ -74,6 +74,24 @@ public class LinkedList {
 		return prev;
 	}
 	
+	public static Node reverseLinkedListInNGroupSize(Node head , int k){
+		Node current = head;
+		Node prev= null;
+		Node next = null;
+		int i =0;
+		while (current != null && i<k){
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+			i++;
+		}
+		
+		if (next != null) 
+	          head.next = reverseLinkedListInNGroupSize(next, k);
+		return prev;
+	}
+	
 	public boolean detectLoopInLinkedList(Node root){
 		boolean loopExists = false;
 		Node fast_ptr = root, slow_ptr = root;
@@ -150,18 +168,19 @@ public class LinkedList {
 	}
 	public static void main(String[] args){
 		LinkedList list = new LinkedList();
-		Node head = list.head;
 		LinkedList list2 = new LinkedList();
 		list.addNode(10);
 		list.addNode(20);
 		list.addNode(30);
 		System.out.println("Before deleting element");
-		list.printNode(head);
+		list.printNode(list.head);
+		
 		System.out.println("After deleting element");
 		list.deleteNode();
 		list.deleteNode();
 		list.deleteNode();
-		list.printNode(head);
+		list.printNode(list.head);
+		
 		System.out.println("Adding elements");
 		list.addNode(1);
 		list.addNode(2);
@@ -171,19 +190,27 @@ public class LinkedList {
 		list.addNode(2);
 		list.addNode(1);
 		//list.addNode(6);
-		list.printNode(head);
+		list.printNode(list.head);
 		System.out.println("Printing n'th element from last");
 		list.printNthNodeFromLast(2);
-		System.out.println("Printing reversed linked list");
-		Node temp = reverseLinkedList(list2.head);
+		
 		list2.addNode(100);
 		list2.addNode(200);
 		list2.addNode(300);
 		list2.addNode(400);
 		System.out.println("Printing second linked list");
 		list2.printNode(list2.head);
-		list2.head.next.next.next = list2.head;
-		boolean loop = list.detectLoopInLinkedList(list2.head);
+		System.out.println("Printing reversed linked list");
+		Node temp = reverseLinkedList(list2.head);
+		list2.printNode(temp);
+		
+		LinkedList list21 = new LinkedList();
+		list21.addNode(100);
+		list21.addNode(200);
+		list21.addNode(300);
+		list21.addNode(400);
+		list21.head.next.next.next = list21.head;
+		boolean loop = list.detectLoopInLinkedList(list21.head);
 		if(loop)
 		System.out.println("Loop exists");
 		else 
@@ -205,5 +232,18 @@ public class LinkedList {
 		System.out.println("Intersection of two linked list is :" + intersectionOfLinkedList.getData());
 		else 
 		System.out.println("No Intersection exist");	
+		System.out.println("--------------------------Printing reverse linked list in 3 group size------------------------");
+		LinkedList list5 = new LinkedList();
+		list5.addNode(10);
+		list5.addNode(20);
+		list5.addNode(30);
+		list5.addNode(40);
+		list5.addNode(50);
+		list5.addNode(60);
+		list5.addNode(70);
+		list5.addNode(80);
+		list5.addNode(90);
+		Node temp2 = reverseLinkedListInNGroupSize(list5.head,3);
+		list5.printNode(temp2);
 	}
 }
