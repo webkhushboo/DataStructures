@@ -16,7 +16,7 @@ class Node
 }
  
 /* Class to print the left view */
-public class TreeImpl
+public class LeftView
 {
     Node root;
     static int  max_level = 0;
@@ -49,7 +49,7 @@ public class TreeImpl
     public static void main(String args[])
     {
         /* creating a binary tree and entering the nodes */
-        TreeImpl tree = new TreeImpl();
+        LeftView tree = new LeftView();
         tree.root = new Node(12);
         tree.root.left = new Node(10);
         tree.root.right = new Node(30);

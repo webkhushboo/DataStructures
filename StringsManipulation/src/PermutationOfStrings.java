@@ -1,10 +1,10 @@
 
-public class Strings {
+public class PermutationOfStrings {
 	    public static void main(String[] args)
 	    {
 	        String str = "ABC";
 	        int n = str.length();
-	        Strings permutation = new Strings();
+	        PermutationOfStrings permutation = new PermutationOfStrings();
 	        permutation.permute(str, 0, n-1);
 	    }
 	 
