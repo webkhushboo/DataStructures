@@ -25,8 +25,8 @@ public class BFS {
         Scanner s = new Scanner(System.in);
         int N = s.nextInt();
         boolean[] visited = new boolean[N];
-        List<Integer> levels = new ArrayList<Integer>();
-        levels.add(1);
+      //  List<Integer> levels = new ArrayList<Integer>();
+       // levels.add(1);
         visited[0] = true;
         LinkedList[] arrayOfLists = new LinkedList[N];
         arrayOfLists[0] = new LinkedList<Integer>();
