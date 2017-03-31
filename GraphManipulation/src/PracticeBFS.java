@@ -32,7 +32,7 @@ public class PracticeBFS {
 		System.out.println(1);
 	}
 	else if(level == 2){
-		System.out.println(arrayOfLists[0]);
+		System.out.println(arrayOfLists[0].size());
 	}
 	else {
 	 List<Integer> layeredList = new ArrayList<Integer>();
@@ -52,7 +52,7 @@ public class PracticeBFS {
 			 Iterator<Integer> itr2 = tempList.iterator();
 			 while(itr2.hasNext()){
 				 int n = itr2.next();
-				 if(!visitedQueue[n]){
+				 if(visitedQueue[n] != true){
 					 tempList.add(n);
 				 }
 			 }
