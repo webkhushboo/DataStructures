@@ -42,14 +42,14 @@ public class MirrorImage {
 	}
 	private Node searchNode(Node root ,int data){
 		Node temp = root;
-		/*while(temp != null){
+		//while(temp != null){
 			if(temp.data == data)
-				break;
+				return temp;
 			else{
 			temp.left = searchNode(temp.left,data);
 			temp.right = searchNode(temp.right,data);
-			}
-		}*/
+			//}
+		}
 		return temp;
 	} 
 	private void addNodeTree(Node parent, int childData, String position) {
