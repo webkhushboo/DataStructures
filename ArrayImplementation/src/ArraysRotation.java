@@ -4,34 +4,36 @@ public class ArraysRotation {
 
 	public static int[] arrayLeftRotation(int[] a, int n, int k) {
 		
-		/*int p=0;
-		while(p<k){
 		int[] output = new int[n];
-		for(int i =0; i<n-1;i++){
-			output[i] = a[i+1];
-		}
-		for(int j = 0; j < 1;j++){
-			output[n-1] =a[j];
-		}
-		p++;
-		a =output;
+		int[] temp = new int[k];
+		int index=0;
+		//Shift starting elements upto no of rotation in temporary array
+		for(int i =0;i <k;i++){
+			temp[i] = a[i];
 		}
 		
-		return a;*/
-		int[] output = new int[n];
-		for(int j = 0; j < n;j++){
-		output[(j + n - k) % n] = a [j];
+		//Shift remaining elements in output array
+		for(int j = 0; j < n-k;j++){
+		output[index++] = a[k+j];
+		}
+		
+		//Shift temporary elements in output array
+		for(int m =0 ;m<k;m++){
+			output[index++]= temp[m];
 		}
 		return output;
     }
     
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int k = in.nextInt();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter no of elements:");
+        int n = scan.nextInt();
+        System.out.println("Enter no of rotation:");
+        int k = scan.nextInt();
+        System.out.println("Enter array elements:");
         int a[] = new int[n];
         for(int a_i=0; a_i < n; a_i++){
-            a[a_i] = in.nextInt();
+            a[a_i] = scan.nextInt();
         }
       
         int[] output = new int[n];

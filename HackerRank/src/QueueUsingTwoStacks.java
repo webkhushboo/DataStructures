@@ -4,52 +4,33 @@ import java.util.Stack;
 public class QueueUsingTwoStacks {
 
 	public static class MyQueue<T> {
-        Stack<T> stackNewestOnTop = new Stack<T>();
-        Stack<T> stackOldestOnTop = new Stack<T>();
-        int top =-1;
+		Stack<T> stackNewestOnTop = new Stack<>();
+        Stack<T> stackOldestOnTop = new Stack<>();
 
-        public void enqueue(T value) { // Push onto newest stack
+        public void enqueue(T value) {
             stackNewestOnTop.push(value);
-            top++;
+        }
+
+        private void moveAllElements(Stack<T> from, Stack<T> to) {
+            while (!from.empty()) {
+                to.push(from.pop());
+            }
         }
 
         public T peek() {
-        	while(top != -1){
-        		stackOldestOnTop.push(stackNewestOnTop.pop());
-        		top--;
-        	}
-        	T val = stackOldestOnTop.peek();
-        	Stack<T> temp ;
-        	temp = stackNewestOnTop;
-        	stackNewestOnTop = stackOldestOnTop;
-        	stackOldestOnTop = temp;
-        	if(stackNewestOnTop.isEmpty())
-            	top =-1;
-            	else
-            	top = stackNewestOnTop.size()-1;
-			return val;
-            
-        
+            if (stackOldestOnTop.isEmpty()) {
+                moveAllElements(stackNewestOnTop, stackOldestOnTop);
+            }
+            return stackOldestOnTop.peek();
         }
 
         public T dequeue() {
-        	while(top != 0){
-        		stackOldestOnTop.push(stackNewestOnTop.pop());
-        		top--;
-        	}
-        	T val = stackNewestOnTop.pop();
-        	Stack<T> temp ;
-        	temp = stackNewestOnTop;
-        	stackNewestOnTop = stackOldestOnTop;
-        	stackOldestOnTop = temp;
-        	if(stackNewestOnTop.isEmpty())
-        	top =-1;
-        	else
-        	top = stackNewestOnTop.size()-1;
-			return val;
-            
+            if (stackOldestOnTop.isEmpty()) {
+                moveAllElements(stackNewestOnTop, stackOldestOnTop);
+            }
+            return stackOldestOnTop.pop();
         }
-    }
+	}
 
     
     public static void main(String[] args) {
